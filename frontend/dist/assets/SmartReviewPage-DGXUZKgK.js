@@ -1,0 +1,1 @@
+import{_ as r}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{c as o,b as t,o as a}from"./index-DaZntZmm.js";const s={};function c(n,e){return a(),o("div",null,[...e[0]||(e[0]=[t("h1",{class:"text-2xl font-bold text-gray-800"},"智能复习",-1),t("p",{class:"text-gray-500 mt-2"},"功能开发中...",-1)])])}const m=r(s,[["render",c]]);export{m as default};
