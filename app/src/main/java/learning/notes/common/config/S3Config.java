@@ -14,19 +14,18 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class S3Config {
 
-    private final AppConfigProperties appConfig;
+    private final StorageConfigProperties storageConfig;
 
     @Bean
     public S3Client s3Client() {
-        AppConfigProperties.StorageConfig storage = appConfig.getStorage();
         AwsBasicCredentials credentials = AwsBasicCredentials.create(
-            storage.getAccessKey(),
-            storage.getSecretKey()
+            storageConfig.getAccessKey(),
+            storageConfig.getSecretKey()
         );
 
         return S3Client.builder()
-            .endpointOverride(URI.create(storage.getEndpoint()))
-            .region(Region.of(storage.getRegion()))
+            .endpointOverride(URI.create(storageConfig.getEndpoint()))
+            .region(Region.of(storageConfig.getRegion()))
             .credentialsProvider(StaticCredentialsProvider.create(credentials))
             .forcePathStyle(true)
             .build();

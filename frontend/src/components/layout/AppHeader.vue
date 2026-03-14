@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { ref } from 'vue'
 
-const isDarkMode = ref(false)
+  const isDarkMode = ref(false)
 
-const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value
-  document.documentElement.classList.toggle('dark', isDarkMode.value)
-}
+  const toggleTheme = () => {
+    isDarkMode.value = !isDarkMode.value
+    document.documentElement.classList.toggle('dark', isDarkMode.value)
+  }
 </script>
 
 <template>
@@ -16,10 +16,7 @@ const toggleTheme = () => {
         <h1 class="text-xl font-semibold text-gray-800">智能学习笔记平台</h1>
       </div>
       <div class="flex items-center space-x-4">
-        <button
-          @click="toggleTheme"
-          class="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-        >
+        <button @click="toggleTheme" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
           <svg
             v-if="isDarkMode"
             xmlns="http://www.w3.org/2000/svg"

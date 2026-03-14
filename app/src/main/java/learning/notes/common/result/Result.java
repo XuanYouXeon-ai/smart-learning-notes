@@ -1,31 +1,51 @@
 package learning.notes.common.result;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import learning.notes.common.constant.CommonConstants;
+import learning.notes.common.exception.ErrorCode;
+import lombok.Getter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
 public class Result<T> {
 
-    private int code;
-    private String message;
-    private T data;
+    private final Integer code;
+    private final String message;
+    private final T data;
 
-    public static <T> Result<T> success(T data) {
-        return new Result<>(200, "success", data);
+    private Result(Integer code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
     }
 
     public static <T> Result<T> success() {
-        return new Result<>(200, "success", null);
+        return new Result<>(CommonConstants.StatusCode.SUCCESS, "success", null);
     }
 
-    public static <T> Result<T> error(int code, String message) {
-        return new Result<>(code, message, null);
+    public static <T> Result<T> success(T data) {
+        return new Result<>(CommonConstants.StatusCode.SUCCESS, "success", data);
+    }
+
+    public static <T> Result<T> success(String message, T data) {
+        return new Result<>(CommonConstants.StatusCode.SUCCESS, message, data);
     }
 
     public static <T> Result<T> error(String message) {
-        return new Result<>(500, message, null);
+        return new Result<>(CommonConstants.StatusCode.SERVER_ERROR, message, null);
+    }
+
+    public static <T> Result<T> error(Integer code, String message) {
+        return new Result<>(code, message, null);
+    }
+
+    public static <T> Result<T> error(ErrorCode errorCode) {
+        return new Result<>(errorCode.getCode(), errorCode.getMessage(), null);
+    }
+
+    public static <T> Result<T> error(ErrorCode errorCode, String message) {
+        return new Result<>(errorCode.getCode(), message, null);
+    }
+
+    public boolean isSuccess() {
+        return CommonConstants.StatusCode.SUCCESS == this.code;
     }
 }

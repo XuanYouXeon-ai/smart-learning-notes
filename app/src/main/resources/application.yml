@@ -14,10 +14,28 @@ spring:
     virtual:
       enabled: true
 
+  web:
+    cors:
+      allowed-origin-patterns:
+        - "http://localhost:5173"
+        - "http://localhost:5174"
+        - "http://localhost:5175"
+        - "http://localhost:5176"
+        - "http://localhost:80"
+      allowed-methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
+
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:smart_learning_notes}
     username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD}
+    password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -40,7 +58,6 @@ spring:
       config: |
         singleServerConfig:
           address: "redis://${REDIS_HOST:localhost}:${REDIS_PORT:6379}"
-          password: "${REDIS_PASSWORD:}"
           database: 0
           connectionMinimumIdleSize: 10
           connectionPoolSize: 64
@@ -64,7 +81,7 @@ spring:
   ai:
     openai:
       base-url: https://dashscope.aliyuncs.com/compatible-mode
-      api-key: ${AI_DASHSCOPE_API_KEY}
+      api-key: ${AI_BAILIAN_API_KEY}
       chat:
         options:
           model: ${AI_MODEL:qwen-plus}
@@ -86,13 +103,13 @@ spring:
 app:
   storage:
     endpoint: ${APP_STORAGE_ENDPOINT:http://localhost:9000}
-    access-key: ${APP_STORAGE_ACCESS_KEY}
-    secret-key: ${APP_STORAGE_SECRET_KEY}
+    access-key: ${APP_STORAGE_ACCESS_KEY:}
+    secret-key: ${APP_STORAGE_SECRET_KEY:}
     bucket: ${APP_STORAGE_BUCKET:smart-learning-notes}
     region: ${APP_STORAGE_REGION:us-east-1}
 
   cors:
-    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174,http://localhost:80}
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:5176,http://localhost:80}
 
 logging:
   level:

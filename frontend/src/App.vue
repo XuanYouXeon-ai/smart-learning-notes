@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import AppLayout from '@/components/layout/AppLayout.vue'
+  import { RouterView } from 'vue-router'
+  import AppLayout from '@/components/layout/AppLayout.vue'
 </script>
 
 <template>
@@ -9,5 +9,4 @@ import AppLayout from '@/components/layout/AppLayout.vue'
   </AppLayout>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
